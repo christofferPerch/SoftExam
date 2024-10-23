@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.1184077">
+  <PropertyGroup>
+    <StartupCommand>npm run dev</StartupCommand>
+    <JavaScriptTestRoot>src\</JavaScriptTestRoot>
+    <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\modules\core\components\" />
+    <Folder Include="src\modules\core\hooks\" />
+    <Folder Include="src\modules\core\services\" />
+    <Folder Include="src\modules\core\states\" />
+    <Folder Include="src\modules\delivery\components\" />
+    <Folder Include="src\modules\delivery\hooks\" />
+    <Folder Include="src\modules\delivery\states\" />
+    <Folder Include="src\modules\delivery\services\" />
+    <Folder Include="src\modules\order\components\" />
+    <Folder Include="src\modules\order\hooks\" />
+    <Folder Include="src\modules\order\states\" />
+    <Folder Include="src\modules\order\services\" />
+    <Folder Include="src\modules\restaurant\components\" />
+    <Folder Include="src\modules\restaurant\hooks\" />
+    <Folder Include="src\modules\restaurant\states\" />
+    <Folder Include="src\modules\restaurant\services\" />
+    <Folder Include="src\design-system\" />
+    <Folder Include="src\hooks\" />
+    <Folder Include="src\utils\" />
+    <Folder Include="src\services\" />
+  </ItemGroup>
+</Project>
