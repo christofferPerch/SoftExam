@@ -1,6 +1,8 @@
-@CustomerService_HostAddress = http://localhost:5120
+@CustomerService_HostAddress = http://localhost:5215
 
-GET {{CustomerService_HostAddress}}/weatherforecast/
+POST {{CustomerService_HostAddress}}/api/user/register
+Content-Type: application/json
+
 Accept: application/json
 
 ###
