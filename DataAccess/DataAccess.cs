@@ -41,5 +41,9 @@ namespace DataAccess
 
         public Task<int> Delete(string sql, object parameters) =>
             WithConnection(db => db.ExecuteAsync(sql, parameters));
+
+        public Task<T?> ExecuteStoredProcedure<T>(string procedureName, object parameters) =>
+          WithConnection(db => db.QueryFirstOrDefaultAsync<T>(
+              procedureName, parameters, commandType: CommandType.StoredProcedure));
     }
 }
