@@ -85,5 +85,33 @@ namespace RestaurantService.Controllers
 
             return NoContent();
         }
+
+        // POST: api/restaurant/{restaurantId}/menu-item/add
+        [HttpPost("{restaurantId}/menu-item/add")]
+        public async Task<ActionResult> AddMenuItem(int restaurantId, [FromBody] MenuItem menuItem) {
+            if (menuItem == null) {
+                return BadRequest("Menu item data is invalid.");
+            }
+
+            var menuItemId = await _restaurantService.AddMenuItem(restaurantId, menuItem);
+
+            if (menuItemId == 0) {
+                return StatusCode(500, "An error occurred while adding the menu item.");
+            }
+
+            return CreatedAtAction(nameof(GetRestaurantById), new { id = restaurantId }, menuItem);
+        }
+
+        // DELETE: api/restaurant/menu-item/delete/{menuItemId}
+        [HttpDelete("menu-item/delete/{menuItemId}")]
+        public async Task<IActionResult> RemoveMenuItem(int menuItemId) {
+            var result = await _restaurantService.RemoveMenuItem(menuItemId);
+
+            if (result == 0) {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
 }

@@ -145,6 +145,29 @@ namespace RestaurantService.Services
                     ";
             return await _dataAccess.Delete(sql, new { Id = id });
         }
+
+
+        public async Task<int> AddMenuItem(int restaurantId, MenuItem menuItem) {
+            var sql = @"
+                INSERT INTO MenuItem (RestaurantId, Name, Description, Price)
+                VALUES (@RestaurantId, @Name, @Description, @Price);
+                SELECT CAST(SCOPE_IDENTITY() as int);";
+
+            var parameters = new {
+                RestaurantId = restaurantId,
+                menuItem.Name,
+                menuItem.Description,
+                menuItem.Price
+            };
+
+            int newMenuItemId = (await _dataAccess.InsertAndGetId<int?>(sql, parameters)) ?? 0;
+            return newMenuItemId;
+        }
+
+        public async Task<int> RemoveMenuItem(int menuItemId) {
+            var sql = "DELETE FROM MenuItem WHERE Id = @Id";
+            return await _dataAccess.Delete(sql, new { Id = menuItemId });
+        }
     }
 
 }

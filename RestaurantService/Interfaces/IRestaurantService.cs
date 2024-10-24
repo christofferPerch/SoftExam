@@ -10,5 +10,7 @@ namespace RestaurantService.Interfaces
         Task<int> AddRestaurant(Restaurant restaurant);
         Task<int> UpdateRestaurant(Restaurant restaurant);
         Task<int> DeleteRestaurant(int id);
+        Task<int> AddMenuItem(int restaurantId, MenuItem menuItem);
+        Task<int> RemoveMenuItem(int menuItemId);
     }
 }
