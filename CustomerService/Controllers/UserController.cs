@@ -25,16 +25,23 @@ namespace CustomerService.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            // Ensure the country enum value is valid
+            if (!Enum.IsDefined(typeof(Country), model.Country))
+            {
+                return BadRequest("Invalid country specified.");
+            }
+
             var user = new ApplicationUser
             {
                 UserName = model.Email,
                 Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Address = model.Address,
                 City = model.City,
                 ZipCode = model.ZipCode,
-                Country = model.Country
+                Country = model.Country.ToString() // Store country as string in the database
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
